@@ -1,571 +1,549 @@
-:root {
-    --cream: #F5EFE6;
-    --cream-dark: #E8DECC;
-    --black: #221F20;
-    
-    /* Expanded Color Palette from Poster */
-    --red: #DF2826;
-    --gold: #EAA021;
-    --green: #129165;
-    --purple: #5C2E85;
-    --teal: #17A29B;
-    
-    /* Character Dots */
-    --c-green: #276344;
-    --c-white: #FFFFFF;
-    --c-purple: #5A2961;
-    --c-black: #1A1A1A;
-    --c-red: #A31D24;
-    --c-brown: #754429;
-
-    --font-heading: 'Oswald', sans-serif;
-    --font-body: 'Source Serif 4', serif;
+/* =========================================================
+   CUSTOM FONTS & VARIABLES & BASE
+   ========================================================= */
+@font-face {
+    font-family: 'LuongTuong';
+    src: url('fonts/LuongTuong.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-/* Color Utility Classes */
-.c-red { color: var(--red); }
-.c-gold { color: var(--gold); }
-.c-green { color: var(--green); }
-.c-purple { color: var(--purple); }
-.c-teal { color: var(--teal); }
+/* Định nghĩa font LifelessGrotesk (Medium & Black) */
+@font-face {
+    font-family: 'LifelessGrotesk';
+    src: url('fonts/BDLifelessGrotesk-Medium.otf') format('opentype');
+    font-weight: 500;
+}
 
-.bg-red { background-color: var(--red); }
-.bg-gold { background-color: var(--gold); }
-.bg-green { background-color: var(--green); }
-.bg-purple { background-color: var(--purple); }
-.bg-teal { background-color: var(--teal); }
-.bg-cream-dark { background-color: var(--cream-dark); }
+@font-face {
+    font-family: 'LifelessGrotesk';
+    src: url('fonts/BDLifelessGrotesk-Black.otf') format('opentype');
+    font-weight: 900;
+}
 
-.border-red { border-color: var(--red); }
-.border-gold { border-color: var(--gold); }
-.border-green { border-color: var(--green); }
-.border-purple { border-color: var(--purple); }
-.border-teal { border-color: var(--teal); }
+:root {
+    --bg-main: #f9efd7; /* Màu vàng kem giấy theo yêu cầu */
+    --text-dark: #2c2c2c;
+    --font-heading: 'LuongTuong', 'Playfair Display', serif;
+    --font-content: 'LifelessGrotesk', 'Space Grotesk', sans-serif;
+    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background-color: var(--cream);
-    color: var(--black);
-    font-family: var(--font-body);
-    line-height: 1.6;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    font-family: var(--font-content);
+    font-weight: 500; /* Mặc định sử dụng Medium */
+    overflow-x: hidden;
+    overflow-y: hidden; 
 }
 
-/* Subtle paper texture overlay */
-.paper-texture {
+body.intro-done {
+    overflow-y: auto;
+}
+
+/* =========================================================
+   WELCOME INTRO (COINS)
+   ========================================================= */
+#welcome-intro {
     position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: none; /* Không cản trở click sau khi ẩn */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+.coin-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coin {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0; /* GSAP sẽ điều khiển opacity */
 }
 
 /* =========================================================
-   HEADER & NAVIGATION
+   NAVBAR & LOGO (STICKY & SCROLL EFFECT)
    ========================================================= */
-.header {
+#sticky-nav {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    height: 80px;
+    padding: 0 4rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    padding: 2rem 4rem;
-    border-bottom: 4px solid var(--red);
-    position: relative;
+    z-index: 999;
+    /* Nền trong suốt lúc đầu, có màu mờ khi cuộn */
+    background: transparent;
+    transition: background 0.4s ease;
 }
 
-.logo {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: 6px;
+body.is-scrolled #sticky-nav {
+    background: rgba(249, 239, 215, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.nav-links {
+    list-style: none;
     display: flex;
-    align-items: center;
+    gap: 2rem;
+    opacity: 0; /* Ẩn đi khi ở màn hình Hero */
+    pointer-events: none; /* Không cho click nhầm */
+    transition: opacity 0.5s ease;
 }
 
-.sparkle {
-    font-size: 2rem;
-    margin-left: 10px;
-    color: var(--black);
+/* Chỉ hiện ra khi người dùng cuộn xuống (sticky-nav kích hoạt nền trắng) */
+body.is-scrolled .nav-links {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.nav a {
-    font-family: var(--font-heading);
-    color: var(--black);
+.nav-links a {
     text-decoration: none;
-    margin-left: 3rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    transition: color 0.3s;
+    color: var(--text-dark);
+    font-family: var(--font-heading);
+    font-weight: normal; /* Font custom thường đẹp nhất ở weight normal */
+    font-size: 1.4rem; /* Tăng size để thấy rõ chi tiết font */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
-.nav a:hover { color: var(--red); }
+/* --- LOGO CHUYỂN ĐỘNG --- */
+#main-logo {
+    position: fixed;
+    /* Vị trí ban đầu: Canh ở giữa màn hình */
+    top: 50%;
+    left: 50%;
+    width: 95vw; /* Phóng to gần như chiếm trọn chiều ngang màn hình */
+    max-width: 1200px; /* To hết cỡ trên PC */
+    height: auto;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    z-index: 1001;
+    /* Chuyển động mượt mà cho mọi thuộc tính: vị trí, kích thước, độ mờ */
+    transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), width 0.6s ease, top 0.6s ease;
+}
+
+/* Class được thêm vào khi GSAP chạy đến bước show logo */
+body.logo-reveal #main-logo {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); /* Phóng to ra kích thước gốc */
+}
+
+/* Khi cuộn trang: Logo bay lên chính giữa thanh Navbar và thu nhỏ mạnh */
+body.is-scrolled #main-logo {
+    top: 40px; /* Tọa độ Y canh giữa Navbar cao 80px */
+    left: 50%; /* Vẫn giữ ở giữa màn hình */
+    width: 140px; /* Thu nhỏ gọn gàng để vừa Navbar */
+    transform: translate(-50%, -50%) scale(1); /* Giữ nguyên scale để hình ảnh nét nhất */
+}
 
 /* =========================================================
-   HERO SECTION
+   HERO BACKGROUND & DECORATIONS
    ========================================================= */
-.hero-section {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 6rem 2rem;
-    gap: 4rem;
+#hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1; /* Dưới Logo nhưng trên các thành phần khác */
+    opacity: 0;
+    transition: opacity 1.5s ease;
     overflow: hidden;
 }
 
-/* DECORATIVE ELEMENTS */
-.bg-huge-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-heading);
-    font-size: 32vw;
-    font-weight: 700;
-    opacity: 0.1;
-    z-index: -1;
-    white-space: nowrap;
-    pointer-events: none;
-    letter-spacing: 15px;
+body.logo-reveal #hero-background {
+    opacity: 1; /* Hiện ra cùng lúc với Logo khổng lồ */
 }
 
-/* Arch and Cloud Particles */
-.particle-arch {
-    position: absolute;
-    border-radius: 50%;
-    border-top: 6px solid;
-    z-index: 0;
-}
-.arch-1 {
-    width: 600px; height: 600px;
-    border-color: var(--gold);
-    top: -100px; right: -100px;
-    transform: rotate(30deg);
-}
-.arch-2 {
-    width: 400px; height: 400px;
-    border-color: var(--red);
-    bottom: -150px; left: 100px;
-    transform: rotate(-20deg);
-}
-
-.particle-cloud {
-    position: absolute;
-    background-size: contain;
-    background-repeat: no-repeat;
-    z-index: 0;
-}
-.cloud-1 {
-    width: 120px; height: 80px;
-    top: 20%; left: 40%;
-    background-image: radial-gradient(circle at 30% 70%, var(--red) 30%, transparent 31%),
-                      radial-gradient(circle at 70% 70%, var(--red) 30%, transparent 31%),
-                      radial-gradient(circle at 50% 40%, var(--red) 40%, transparent 41%);
-}
-.cloud-2 {
-    width: 100px; height: 60px;
-    bottom: 30%; right: 40%;
-    background-image: radial-gradient(circle at 30% 70%, var(--gold) 30%, transparent 31%),
-                      radial-gradient(circle at 70% 70%, var(--gold) 30%, transparent 31%),
-                      radial-gradient(circle at 50% 40%, var(--gold) 40%, transparent 41%);
-}
-
-.decor-diamonds {
-    display: flex;
-    gap: 0.8rem;
-    margin-bottom: 3rem;
-}
-
-.decor-diamonds span {
-    width: 25px;
-    height: 25px;
-    transform: rotate(45deg);
-}
-
-.hero-content {
-    flex: 1;
-}
-
-.tag-line {
-    display: inline-flex;
-    align-items: center;
-    border: 2px solid var(--black);
-    margin-bottom: 2rem;
-}
-
-.tag-box {
-    background-color: var(--red);
-    color: var(--cream);
-    font-family: var(--font-heading);
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    letter-spacing: 1px;
-}
-
-.tag-text {
-    font-family: var(--font-heading);
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    letter-spacing: 1px;
-}
-
-.main-title {
-    font-family: var(--font-heading);
-    font-size: 7rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--red);
-    margin-bottom: 3rem;
-    letter-spacing: -2px;
-}
-
-.hero-desc {
-    margin-bottom: 3rem;
-    font-size: 1.2rem;
-    max-width: 500px;
-}
-
-.drop-cap {
-    float: left;
-    font-size: 4rem;
-    line-height: 0.8;
-    padding-top: 5px;
-    padding-right: 12px;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    color: var(--black);
-}
-
-.btn-solid {
-    display: inline-block;
-    background-color: var(--black);
-    color: var(--cream);
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.2rem;
-    padding: 1rem 3rem;
-    text-decoration: none;
-    letter-spacing: 2px;
-    border: 2px solid var(--black);
-    transition: all 0.3s;
-}
-
-.btn-solid:hover {
-    background-color: var(--red);
-    border-color: var(--red);
-}
-
-.hero-illustration {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.hero-mask-1 {
-    position: absolute;
-    width: 150px !important; height: 180px !important;
-    top: -20px; left: -20px;
-    transform: rotate(-15deg);
-    z-index: 2;
-    opacity: 0.9;
-}
-
-.hero-mask-2 {
-    position: absolute;
-    width: 180px !important; height: 216px !important;
-    bottom: -30px; right: -40px;
-    transform: rotate(10deg);
-    z-index: 2;
-    opacity: 0.9;
-}
-
-.vector-placeholder {
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background: none;
-}
-
-/* Subtle geometric decoration */
-.vector-placeholder::before {
-    content: '';
-    position: absolute;
-    width: 110%;
-    height: 110%;
-    border: 2px dashed var(--red);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0.5;
-}
-
-#hero-img {
+#hero-background img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    mix-blend-mode: multiply;
+    object-fit: cover;
+    object-position: center top;
 }
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* Gradient chuyển êm từ tranh sang nền kem của web */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 80%, var(--bg-main) 100%);
+}
+
+.decor {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.12; /* Làm mờ đi một chút để chữ nổi bật hơn */
+}
+
+.decor img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Hòa trộn thành hình chìm trên giấy */
+    will-change: transform;
+}
+
+/* Hiệu ứng trôi bồng bềnh */
+@keyframes float1 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-30px) translateX(15px); }
+}
+@keyframes float2 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(20px) translateX(-20px); }
+}
+@keyframes float3 {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-25px) scale(1.05); }
+}
+
+/* Đặt 16 họa tiết rải rác lấp đầy toàn trang với độ mờ (Blur) khác nhau tạo chiều sâu 3D */
+.particle-1 { top: 2%; left: -5%; width: 350px; transform: rotate(15deg); filter: blur(2px); }
+.particle-1 img { animation: float1 12s ease-in-out infinite; }
+
+.particle-2 { top: 8%; right: -5%; width: 450px; transform: rotate(-10deg); }
+.particle-2 img { animation: float2 15s ease-in-out infinite; }
+
+.particle-3 { top: 15%; left: 10%; width: 250px; transform: rotate(25deg); filter: blur(1px); opacity: 0.08; }
+.particle-3 img { animation: float3 13s ease-in-out infinite reverse; }
+
+.particle-4 { top: 22%; right: 15%; width: 300px; transform: rotate(-15deg); filter: blur(3px); }
+.particle-4 img { animation: float1 18s ease-in-out infinite; }
+
+.particle-5 { top: 30%; left: -8%; width: 500px; transform: rotate(5deg); opacity: 0.06; }
+.particle-5 img { animation: float2 14s ease-in-out infinite reverse; }
+
+.particle-6 { top: 38%; right: -2%; width: 350px; transform: rotate(-25deg); filter: blur(2px); }
+.particle-6 img { animation: float3 11s ease-in-out infinite; }
+
+.particle-7 { top: 45%; left: 5%; width: 400px; transform: rotate(10deg); filter: blur(1px); }
+.particle-7 img { animation: float1 16s ease-in-out infinite reverse; }
+
+.particle-8 { top: 52%; right: 20%; width: 200px; transform: rotate(30deg); opacity: 0.09; }
+.particle-8 img { animation: float2 12s ease-in-out infinite; }
+
+.particle-9 { top: 60%; left: -5%; width: 450px; transform: rotate(-10deg); filter: blur(3px); }
+.particle-9 img { animation: float3 17s ease-in-out infinite; }
+
+.particle-10 { top: 68%; right: -5%; width: 300px; transform: rotate(15deg); }
+.particle-10 img { animation: float1 14s ease-in-out infinite reverse; }
+
+.particle-11 { top: 75%; left: 15%; width: 250px; transform: rotate(-20deg); filter: blur(1px); opacity: 0.07; }
+.particle-11 img { animation: float2 10s ease-in-out infinite; }
+
+.particle-12 { top: 82%; right: 5%; width: 400px; transform: rotate(5deg); filter: blur(2px); }
+.particle-12 img { animation: float3 15s ease-in-out infinite; }
+
+.particle-13 { top: 88%; left: -2%; width: 350px; transform: rotate(-15deg); }
+.particle-13 img { animation: float1 12s ease-in-out infinite reverse; }
+
+.particle-14 { top: 93%; right: 18%; width: 280px; transform: rotate(12deg); filter: blur(3px); opacity: 0.08; }
+.particle-14 img { animation: float2 14s ease-in-out infinite; }
+
+.particle-15 { bottom: 0%; left: 5%; width: 300px; transform: rotate(-5deg); filter: blur(1px); }
+.particle-15 img { animation: float3 16s ease-in-out infinite reverse; }
+
+.particle-16 { bottom: -2%; right: -5%; width: 450px; transform: rotate(20deg); }
+.particle-16 img { animation: float1 19s ease-in-out infinite; }
 
 /* =========================================================
-   GENERAL SECTIONS
+   MAIN CONTENT & CARD SWIPER
    ========================================================= */
-.divider hr {
-    border: none;
-    border-top: 4px double var(--black);
-    margin: 2rem 0;
+#main-content {
+    position: relative; /* Trở thành cột trụ để gắn họa tiết lơ lửng */
+    z-index: 10; /* Kéo chữ nổi lên trên Sân khấu mở màn (z-index: 1) */
+    opacity: 0; /* Ẩn đi chờ intro xong */
+    margin-top: 100vh; /* Bắt đầu nội dung chữ ngay TẠI ĐÁY của bức tranh mở màn */
+    padding-top: 0;
+    transition: opacity 1s ease; /* Bỏ hiệu ứng trượt margin để không đè vào tranh */
 }
 
-.section-number {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    border-width: 3px;
-    border-style: solid;
-    padding: 0.2rem 0.8rem;
-    margin-right: 1.5rem;
+body.intro-done #main-content {
+    opacity: 1;
+}
+
+/* Đã xóa body.is-scrolled #main-content để chữ không bị kéo vút lên đè vào hình nền */
+
+.game-info-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.content-text {
+    font-family: var(--font-content);
+    font-weight: 500; /* Dùng bản Medium */
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    color: var(--text-dark);
+}
+
+.content-text strong, b {
+    font-weight: 900; /* Dùng bản Black khi in đậm */
 }
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 4rem; /* Tăng kích thước để thấy rõ vẻ đẹp của font custom */
+    font-weight: normal;
     letter-spacing: 2px;
-    color: var(--black);
+    margin-bottom: 1.5rem;
 }
 
-.section-subtitle {
-    font-size: 1.2rem;
-    font-style: italic;
-    color: #555;
-    margin-bottom: 4rem;
+/* --- CUSTOM FAN CAROUSEL CSS --- */
+.custom-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 450px; 
+    margin: 40px 0;
+    overflow: hidden; 
+    cursor: grab;
+    touch-action: pan-y; /* Chống cuộn ngang làm giật trang trên điện thoại */
+}
+
+.custom-carousel-container:active {
+    cursor: grabbing;
+}
+
+.custom-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 240px;
+    background: transparent;
+    border-radius: 12px;
+    user-select: none; /* Tránh bôi đen khi kéo */
+}
+
+.custom-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Xóa nền hoàn hảo */
+    pointer-events: none; /* Chặn trình duyệt tự kéo ảnh */
 }
 
 /* =========================================================
-   GRID 3 (NGUỒN GỐC)
+   CHARACTER MATRIX SECTION
    ========================================================= */
-.grid-3 {
+.character-matrix-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 6rem 2rem; /* Cách vòng xoay bài một chút */
+    text-align: center;
+}
+
+.matrix-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Chia 3 cột đẹp mắt */
     gap: 3rem;
+    margin-top: 3rem;
 }
 
-.info-card {
-    background-color: var(--cream);
-    display: flex;
-    flex-direction: column;
-    border-width: 4px;
-    border-style: solid;
+.matrix-item {
+    background: transparent;
+    border-radius: 12px;
 }
 
-.info-card-header {
-    padding: 1.5rem;
+.matrix-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: multiply; /* Xóa phông hoàn hảo cho demo.png */
+    transition: transform 0.4s ease;
+    cursor: pointer;
 }
 
-.info-card-header h3 {
+.matrix-item:hover img {
+    transform: translateY(-10px); /* Nổi lên khi di chuột vào */
+}
+
+/* Chi tiết thẻ nhân vật */
+.matrix-info {
+    text-align: left;
+    padding: 1.5rem 0.5rem;
+    font-family: var(--font-content); /* Đã tích hợp LifelessGrotesk */
+    color: var(--text-dark);
+}
+
+.matrix-info h3 {
     font-family: var(--font-heading);
-    color: var(--cream);
-    font-size: 1.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
     letter-spacing: 1px;
 }
 
-.info-card-body {
-    padding: 2rem;
-    flex: 1;
+.matrix-info .subtitle {
+    font-weight: 900; /* LifelessGrotesk Black */
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #9e2a2b; /* Đỏ đô tạo điểm nhấn */
 }
 
-.info-card-body p {
-    margin-bottom: 1.5rem;
+.matrix-info .meta {
+    font-size: 0.95rem;
+    opacity: 0.7;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed rgba(0,0,0,0.2);
+}
+
+.matrix-info .desc {
+    margin-bottom: 1rem;
+    line-height: 1.6;
     font-size: 1.1rem;
 }
 
-.ref-list {
-    list-style: none;
-    padding-left: 0;
-    border-top: 1px solid var(--red);
-    padding-top: 1.5rem;
-}
-
-.ref-list li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.8rem;
-    font-size: 0.95rem;
-    color: var(--red-dark);
-}
-
-.ref-list li::before {
-    content: '■';
-    position: absolute;
-    left: 0;
-    top: 2px;
-    color: var(--red);
-    font-size: 0.8rem;
-}
-
-/* =========================================================
-   CHARACTER GRID (MA TRẬN NHÂN VẬT)
-   ========================================================= */
-.character-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4rem 2rem;
-}
-
-.char-row {
-    display: flex;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
-    padding-bottom: 2rem;
-    align-items: flex-start;
-}
-
-/* Mask Images */
-.mask-img {
-    width: 100px;
-    height: auto;
-    object-fit: contain;
-    mix-blend-mode: multiply; /* Removes the white background */
-    margin-right: 2rem;
-    flex-shrink: 0;
-}
-
-.char-rank {
-    font-family: var(--font-heading);
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-right: 2rem;
-    letter-spacing: 2px;
-}
-
-.char-details {
-    flex: 1;
-}
-
-.char-name-box {
-    display: flex;
-    align-items: center;
-    border: 3px solid var(--red);
-    padding: 1rem 1.5rem;
-    margin-bottom: 1.5rem;
-    background-color: var(--cream);
-}
-
-.dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 1.5rem;
-    border: 2px solid var(--black);
-}
-
-.dot.green { background-color: var(--c-green); }
-.dot.white { background-color: var(--c-white); }
-.dot.purple { background-color: var(--c-purple); }
-.dot.black { background-color: var(--c-black); }
-.dot.red { background-color: var(--c-red); }
-.dot.brown { background-color: var(--c-brown); }
-
-.c-name {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    color: var(--red);
-    margin-right: auto;
-    letter-spacing: 2px;
-}
-
-.c-points {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--black);
-}
-
-.char-skill h4 {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.5rem;
-}
-
-.char-skill p {
-    font-size: 1.15rem;
-    color: #444;
-}
-
-/* =========================================================
-   CALENDAR DECORATION GRID
-   ========================================================= */
-.calendar-deco {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 5rem;
-    gap: 2px;
-}
-
-.c-box {
-    flex: 1;
-    min-width: 5%;
-    height: 30px;
-}
-
-/* =========================================================
-   FLOW GRID (LUẬT CHƠI)
-   ========================================================= */
-.flow-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-}
-
-.flow-box {
-    position: relative;
-    padding-top: 3rem;
-}
-
-.f-num {
-    position: absolute;
-    top: -20px;
-    left: 0;
-    font-family: var(--font-heading);
-    font-size: 8rem;
-    font-weight: 700;
-    color: var(--red);
-    opacity: 0.15;
-    line-height: 1;
-    z-index: -1;
-}
-
-.f-content {
-    border-top: 4px solid var(--red);
-    padding-top: 1.5rem;
-}
-
-.f-content h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-}
-
-.f-content p {
+.matrix-info .playstyle {
+    font-style: italic;
+    background: rgba(0,0,0,0.04);
+    padding: 1rem;
+    border-radius: 8px;
     font-size: 1.05rem;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .grid-3, .character-grid, .flow-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .hero-section { flex-direction: column; text-align: center; }
-    .main-title { font-size: 5rem; }
-    .hero-desc { margin: 0 auto 3rem; }
-    .drop-cap { float: none; display: inline-block; }
+/* =========================================================
+   HOW TO PLAY SECTION
+   ========================================================= */
+.how-to-play-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.play-subtitle {
+    font-family: var(--font-content);
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #9e2a2b;
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+    text-align: left;
+}
+
+.step-card {
+    background: rgba(255, 255, 255, 0.5); /* Kính mờ nhẹ */
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+.step-card h3 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    display: inline-block;
+}
+
+.step-card p {
+    font-family: var(--font-content);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.step-note {
+    font-weight: 900;
+    color: #9e2a2b;
+    margin-top: 1.5rem;
+}
+
+.skill-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    font-family: var(--font-content);
+}
+
+.skill-list li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.8rem;
+    position: relative;
+    font-size: 1.1rem;
+}
+
+.skill-list li::before {
+    content: "🎭";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1rem;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .matrix-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .matrix-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Xóa nền của thẻ bài */
+    mix-blend-mode: multiply;
+}
+
+/* Hiệu ứng hover nổi nhẹ cho bài */
+.swiper-slide:hover {
+    transform: translateY(-10px) scale(1.05);
+    cursor: pointer;
+}
+
+/* Làm mờ 2 tấm demo để biết là chỗ trống */
+.placeholder-card img {
+    opacity: 0.4;
+    filter: grayscale(80%);
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--text-dark);
 }

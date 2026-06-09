@@ -4,273 +4,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuồng - Đấu Trí Cung Đình</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Thư viện GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-    <div class="paper-texture"></div>
-    
-    <!-- Header -->
-    <header class="header">
-        <div class="logo"><span class="c-red">TU</span><span class="c-gold">Ồ</span><span class="c-green">NG</span> <span class="sparkle c-purple">✦</span></div>
-        <nav class="nav">
-            <a href="#nguon-goc">NGUỒN GỐC</a>
-            <a href="#nhan-vat">NHÂN VẬT</a>
-            <a href="#luat-choi">LUẬT CHƠI</a>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section container">
-        <div class="bg-huge-text"><span class="c-gold">TU</span><span class="c-green">Ồ</span><span class="c-red">NG</span></div>
-        
-        <!-- Particles -->
-        <div class="particle-arch arch-1"></div>
-        <div class="particle-arch arch-2"></div>
-        <div class="particle-cloud cloud-1"></div>
-        <div class="particle-cloud cloud-2"></div>
-        
-        <div class="hero-content">
-            <div class="tag-line">
-                <span class="tag-box bg-green">BOARDGAME</span>
-                <span class="tag-text c-red">THỂ LOẠI: THẺ BÀI CHIẾN THUẬT</span>
-            </div>
-            
-            <h1 class="main-title">
-                <span class="c-green">ĐẤU</span> <span class="c-gold">TRÍ</span><br>
-                <span class="c-red">CUNG</span> <span class="c-purple">ĐÌNH</span>
-            </h1>
-            
-            <div class="hero-desc">
-                <span class="drop-cap">Á</span>
-                <p>p dụng nguyên lý trò chơi hóa (Gamification) và Học qua tiềm thức (Implicit Learning) để mang Nghệ thuật Tuồng truyền thống đến gần hơn với giới trẻ thông qua nhịp độ chơi nhanh và đầy toan tính.</p>
-            </div>
-            
-            <div class="decor-diamonds">
-                <span class="bg-red"></span><span class="bg-gold"></span><span class="bg-green"></span>
-            </div>
-            <a href="#luat-choi" class="btn-solid">XEM LUẬT CHƠI</a>
+    <!-- Lớp màn hình chờ (Intro) -->
+    <div id="welcome-intro">
+        <div class="coin-container">
+            <img src="assets/coin1.png" class="coin" id="coin1" alt="Coin 1">
+            <img src="assets/coin2.png" class="coin" id="coin2" alt="Coin 2">
+            <!-- Đã bỏ coin 3 theo yêu cầu -->
         </div>
-        
-        <div class="hero-illustration">
-            <img src="masks/Screenshot 2026-05-31 223621.png" class="mask-img hero-mask-1">
-            <img src="masks/Screenshot 2026-05-31 223629.png" class="mask-img hero-mask-2">
-            <div class="vector-placeholder">
-                <img src="assets/hero_vector.png" alt="Nhân vật Tuồng" id="hero-img">
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <div class="divider container"><hr></div>
-
-    <!-- Minh Bạch Nguồn Gốc -->
-    <section class="section container" id="nguon-goc">
-        <div class="section-header">
-            <div class="section-number c-red border-red">01</div>
-            <h2 class="section-title"><span class="c-teal">MINH BẠCH</span> <span class="c-red">NGUỒN GỐC</span></h2>
-        </div>
+    <!-- Thanh Điều Hướng (Navbar) -->
+    <nav id="sticky-nav">
+        <!-- Logo di chuyển -->
+        <img src="assets/logouse.png" id="main-logo" alt="Logo Bội Thanh">
         
-        <div class="grid-3">
-            <div class="info-card border-purple">
-                <div class="info-card-header bg-purple">
-                    <h3>HỆ THỐNG VAI DIỄN</h3>
+        <ul class="nav-links">
+            <li><a href="#about">Trải Nghiệm</a></li>
+            <li><a href="#shop">Cửa Hàng</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sân khấu mở màn (Hero Background) -->
+    <div id="hero-background">
+        <img src="assets/hero_bg.png" alt="Sân khấu Tuồng">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Nội dung chính của trang -->
+    <main id="main-content">
+        <!-- Họa tiết trang trí lơ lửng (Particles) -->
+        <div class="decor particle-1"><img src="decorative elements/Illustration7 (9).png" alt=""></div>
+        <div class="decor particle-2"><img src="decorative elements/Illustration7 (10).png" alt=""></div>
+        <div class="decor particle-3"><img src="decorative elements/Illustration7 (11).png" alt=""></div>
+        <div class="decor particle-4"><img src="decorative elements/Illustration7 (12).png" alt=""></div>
+        <div class="decor particle-5"><img src="decorative elements/Illustration7 (15).png" alt=""></div>
+        <div class="decor particle-6"><img src="decorative elements/Illustration7 (17).png" alt=""></div>
+        <div class="decor particle-7"><img src="decorative elements/Illustration7 (19).png" alt=""></div>
+        <div class="decor particle-8"><img src="decorative elements/Illustration7 (20).png" alt=""></div>
+        <!-- Thêm họa tiết lấp đầy phần dưới -->
+        <div class="decor particle-9"><img src="decorative elements/Illustration7 (9).png" alt=""></div>
+        <div class="decor particle-10"><img src="decorative elements/Illustration7 (10).png" alt=""></div>
+        <div class="decor particle-11"><img src="decorative elements/Illustration7 (11).png" alt=""></div>
+        <div class="decor particle-12"><img src="decorative elements/Illustration7 (12).png" alt=""></div>
+        <div class="decor particle-13"><img src="decorative elements/Illustration7 (15).png" alt=""></div>
+        <div class="decor particle-14"><img src="decorative elements/Illustration7 (17).png" alt=""></div>
+        <div class="decor particle-15"><img src="decorative elements/Illustration7 (19).png" alt=""></div>
+        <div class="decor particle-16"><img src="decorative elements/Illustration7 (20).png" alt=""></div>
+
+        <section class="game-info-section">
+            <h1 class="section-title">Hát Bội: Nghệ Thuật Kể Chuyện</h1>
+            <p class="content-text">
+                Tuồng - Đấu Trí Cung Đình là boardgame đấu trí lấy cảm hứng từ nghệ thuật Hát Bội Việt Nam. Người chơi hóa thân thành các tuyến nhân vật kinh điển, sử dụng chiến thuật, phán đoán và những màn lật kèo bất ngờ để giành lấy Ân Sủng trên sân khấu cung đình.
+            </p>
+            
+            <!-- Custom Fan Carousel (Logic xoay tròn độc quyền vô tận) -->
+            <div class="custom-carousel-container" id="card-fan">
+                <!-- Nạp 8 lá bài để vòng tròn luôn đầy đặn -->
+                <div class="custom-card"><img src="assets/kep-van.png" alt="Kép Văn"></div>
+                <div class="custom-card"><img src="assets/kep-ninh.png" alt="Kép Nịnh"></div>
+                <div class="custom-card"><img src="assets/kep-vo.png" alt="Kép Võ"></div>
+                <div class="custom-card"><img src="assets/dao-lang.png" alt="Đào Lẳng"></div>
+                
+                <div class="custom-card"><img src="assets/kep-van.png" alt="Kép Văn"></div>
+                <div class="custom-card"><img src="assets/kep-vo.png" alt="Kép Võ"></div>
+                <div class="custom-card"><img src="assets/kep-ninh.png" alt="Kép Nịnh"></div>
+                <div class="custom-card"><img src="assets/dao-lang.png" alt="Đào Lẳng"></div>
+            </div>
+        </section>
+
+        <!-- 2. Ma trận nhân vật -->
+        <section class="character-matrix-section">
+            <h2 class="section-title">Ma Trận Nhân Vật</h2>
+            <div class="matrix-grid">
+                <div class="matrix-item">
+                    <img src="assets/demo.png" alt="Kép Văn">
+                    <div class="matrix-info">
+                        <h3>1. Kép Văn</h3>
+                        <p class="subtitle">Bậc quân sư điềm tĩnh</p>
+                        <p class="meta">Ưu tiên: 1 • Vai trò: Phòng thủ / ổn định thế trận</p>
+                        <p class="desc">Kích hoạt sớm nhất để bảo vệ bản thân khỏi sát thương và hiệu ứng bất lợi.</p>
+                        <p class="playstyle"><strong>Lối chơi:</strong> Giữ nhịp trận đấu, bảo toàn điểm số và chờ thời cơ phản công.</p>
+                    </div>
                 </div>
-                <div class="info-card-body">
-                    <p>Trích xuất từ nguyên lý phân loại vai diễn kinh điển (Kép, Đào, Nịnh, Thương).</p>
-                    <ul class="ref-list">
-                        <li>Đặc trưng Nghệ thuật Tuồng (Mịch Quang)</li>
-                        <li>Nghệ thuật Tuồng Việt Nam (Hoàng Chương)</li>
+                <div class="matrix-item">
+                    <img src="assets/demo.png" alt="Đào Thương">
+                    <div class="matrix-info">
+                        <h3>2. Đào Thương</h3>
+                        <p class="subtitle">Người làm mềm đòn tấn công</p>
+                        <p class="meta">Ưu tiên: 2 • Vai trò: Khắc chế chiến binh</p>
+                        <p class="desc">Có thể vô hiệu hóa sức mạnh của Kép Võ, biến cú đánh lớn thành con số 0.</p>
+                        <p class="playstyle"><strong>Lối chơi:</strong> Đọc bài đối thủ và chặn đúng thời điểm để xoay chuyển cục diện.</p>
+                    </div>
+                </div>
+                <div class="matrix-item">
+                    <img src="assets/demo.png" alt="Đào Lẳng">
+                    <div class="matrix-info">
+                        <h3>3. Đào Lẳng</h3>
+                        <p class="subtitle">Bậc thao túng sân khấu</p>
+                        <p class="meta">Ưu tiên: 3 • Vai trò: Cướp tài nguyên</p>
+                        <p class="desc">Tước đoạt 3 Token Ân Sủng từ một người chơi bất kỳ.</p>
+                        <p class="playstyle"><strong>Lối chơi:</strong> Phá nhịp đối thủ, tạo khoảng cách tài nguyên và ép bàn chơi hỗn loạn.</p>
+                    </div>
+                </div>
+                <div class="matrix-item">
+                    <img src="assets/demo.png" alt="Kép Nịnh">
+                    <div class="matrix-info">
+                        <h3>4. Kép Nịnh</h3>
+                        <p class="subtitle">Kẻ giăng bẫy quyền lực</p>
+                        <p class="meta">Ưu tiên: 4 • Vai trò: Trừng phạt người dẫn đầu</p>
+                        <p class="desc">Gây trừ 5 điểm cho người đang đứng đầu bàn chơi.</p>
+                        <p class="playstyle"><strong>Lối chơi:</strong> Chuyên phá thế snowball, khiến người dẫn đầu không thể yên tâm giữ lợi thế.</p>
+                    </div>
+                </div>
+                <div class="matrix-item">
+                    <img src="assets/demo.png" alt="Kép Võ">
+                    <div class="matrix-info">
+                        <h3>5. Kép Võ</h3>
+                        <p class="subtitle">Chiến binh áp đảo chiến trường</p>
+                        <p class="meta">Ưu tiên: 5 • Vai trò: Tấn công trực diện</p>
+                        <p class="desc">Tạo lượng điểm lớn nhất trên bàn đấu với +8 điểm.</p>
+                        <p class="playstyle"><strong>Lối chơi:</strong> Tăng tốc mạnh, đe dọa kết thúc ván nhanh nếu không bị khắc chế.</p>
+                    </div>
+                </div>
+                <div class="matrix-item">
+                    <img src="assets/demo.png" alt="Đào Bi">
+                    <div class="matrix-info">
+                        <h3>6. Đào Bi</h3>
+                        <p class="subtitle">Người lật ngược số phận</p>
+                        <p class="meta">Ưu tiên: 6 • Vai trò: Comeback / đảo chiều</p>
+                        <p class="desc">Nếu đang đứng cuối bảng, nhân vật này bùng nổ với hệ số Đột Biến, nhận +10 điểm.</p>
+                        <p class="playstyle"><strong>Lối chơi:</strong> Dành cho những cú lật kèo ngoạn mục ở giai đoạn cuối trận.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Hướng dẫn cách chơi -->
+        <section class="how-to-play-section">
+            <h2 class="section-title">Cách Chơi</h2>
+            <h3 class="play-subtitle">Một ván Bội Thanh diễn ra như thế nào?</h3>
+            <p class="content-text">Mỗi người chơi sẽ điều khiển các nhân vật Hát Bội với những khả năng riêng biệt. Mục tiêu là sử dụng đúng nhân vật vào đúng thời điểm để giành được nhiều Ân Sủng nhất trước khi vở diễn kết thúc.</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <h3>Bước 1 — Chọn nhân vật</h3>
+                    <p>Từ 5 lá bài trên tay, mỗi người bí mật chọn 2 lá và đặt úp xuống bàn.</p>
+                    <p class="step-note">Đây là lúc bạn phải đoán đối thủ đang chuẩn bị làm gì.</p>
+                </div>
+                <div class="step-card">
+                    <h3>Bước 2 — Đồng loạt lật bài</h3>
+                    <p>Khi tất cả đã sẵn sàng, mọi người cùng lật bài.</p>
+                    <p class="step-note">Sân khấu được hé lộ và những màn đấu trí bắt đầu.</p>
+                </div>
+                <div class="step-card">
+                    <h3>Bước 3 — Kích hoạt kỹ năng</h3>
+                    <p>Mỗi nhân vật sẽ thực hiện kỹ năng của mình theo thứ tự.</p>
+                    <ul class="skill-list">
+                        <li><strong>Kép Văn</strong> bảo vệ bản thân</li>
+                        <li><strong>Đào Thương</strong> hóa giải đòn tấn công</li>
+                        <li><strong>Đào Lẳng</strong> cướp Ân Sủng</li>
+                        <li><strong>Kép Nịnh</strong> trừng phạt người dẫn đầu</li>
+                        <li><strong>Kép Võ</strong> tung đòn mạnh mẽ</li>
+                        <li><strong>Đào Bi</strong> tạo nên những màn lật kèo bất ngờ</li>
                     </ul>
+                    <p class="step-note">Chỉ trong một lượt, cục diện có thể thay đổi hoàn toàn.</p>
+                </div>
+                <div class="step-card">
+                    <h3>Bước 4 — Chuẩn bị cho lượt tiếp theo</h3>
+                    <p>Thu bài đã dùng, rút thêm bài mới và tiếp tục vòng đấu.</p>
+                    <p class="step-note">Cuộc chiến tiếp diễn cho đến khi vở diễn hạ màn.</p>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="info-card border-green">
-                <div class="info-card-header bg-green">
-                    <h3>CỐT TRUYỆN & VỞ DIỄN</h3>
-                </div>
-                <div class="info-card-body">
-                    <p>Tên các bối cảnh (Sơn Hậu, Cổ Thành, Trảm Trịnh Ân) trích xuất từ Tuồng Đồ và Tuồng Pho.</p>
-                    <ul class="ref-list">
-                        <li>Kho lưu trữ Nhà hát Tuồng Việt Nam</li>
-                        <li>Kịch bản gốc của Đào Tấn</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="info-card border-gold">
-                <div class="info-card-header bg-gold">
-                    <h3>CƠ CHẾ TRÒ CHƠI</h3>
-                </div>
-                <div class="info-card-body">
-                    <p>Biến tấu tính cách nhân vật thành kỹ năng Game (Sự xảo trá = Cướp điểm, Sự bi thương = Phế võ công).</p>
-                    <ul class="ref-list">
-                        <li>Thiết kế độc quyền bởi Nhóm Dự Án</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider container"><hr></div>
-
-    <!-- Ma Trận Nhân Vật -->
-    <section class="section container" id="nhan-vat">
-        <div class="section-header">
-            <div class="section-number c-gold border-gold">02</div>
-            <h2 class="section-title"><span class="c-purple">MA TRẬN</span> <span class="c-gold">NHÂN VẬT</span></h2>
-        </div>
-        <p class="section-subtitle">Khi các lá bài ngửa lên cùng lúc, bắt buộc phải giải quyết kỹ năng từ trên xuống dưới (1 đến 6).</p>
-        
-        <div class="character-grid">
-            
-            <div class="char-row">
-                <div class="char-rank">ƯU TIÊN 1</div>
-                <img src="masks/Screenshot 2026-05-31 223608.png" class="mask-img">
-                <div class="char-details">
-                    <div class="char-name-box">
-                        <span class="dot green"></span>
-                        <h3 class="c-name">KÉP VĂN</h3>
-                        <span class="c-points">+4Đ</span>
-                    </div>
-                    <div class="char-skill">
-                        <h4>BẬT KHIÊN</h4>
-                        <p>Miễn nhiễm hoàn toàn với mọi đòn trừ điểm/cướp điểm.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="char-row">
-                <div class="char-rank">ƯU TIÊN 2</div>
-                <img src="masks/Screenshot 2026-05-31 223617.png" class="mask-img">
-                <div class="char-details">
-                    <div class="char-name-box">
-                        <span class="dot white"></span>
-                        <h3 class="c-name">ĐÀO THƯƠNG</h3>
-                        <span class="c-points">+3Đ</span>
-                    </div>
-                    <div class="char-skill">
-                        <h4>KHUYÊN CAN</h4>
-                        <p>Xóa sổ toàn bộ lá Kép Võ của tất cả đối thủ về 0 điểm.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="char-row">
-                <div class="char-rank">ƯU TIÊN 3</div>
-                <img src="masks/Screenshot 2026-05-31 223621.png" class="mask-img">
-                <div class="char-details">
-                    <div class="char-name-box">
-                        <span class="dot purple"></span>
-                        <h3 class="c-name">ĐÀO LẲNG</h3>
-                        <span class="c-points">+2Đ</span>
-                    </div>
-                    <div class="char-skill">
-                        <h4>CƯỚP BÓC</h4>
-                        <p>Chỉ định 1 người bất kỳ, cướp 3 điểm của họ cộng cho mình (Không cướp được Kép Văn).</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="char-row">
-                <div class="char-rank">ƯU TIÊN 4</div>
-                <img src="masks/Screenshot 2026-05-31 223625.png" class="mask-img">
-                <div class="char-details">
-                    <div class="char-name-box">
-                        <span class="dot black"></span>
-                        <h3 class="c-name">KÉP NỊNH</h3>
-                        <span class="c-points">+1Đ</span>
-                    </div>
-                    <div class="char-skill">
-                        <h4>DÈM PHA</h4>
-                        <p>Tìm người đang cao điểm nhất bàn và trừ 5 điểm của họ (Vô dụng nếu có Kép Văn).</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="char-row">
-                <div class="char-rank">ƯU TIÊN 5</div>
-                <img src="masks/Screenshot 2026-05-31 223629.png" class="mask-img">
-                <div class="char-details">
-                    <div class="char-name-box">
-                        <span class="dot red"></span>
-                        <h3 class="c-name">KÉP VÕ</h3>
-                        <span class="c-points">+8Đ</span>
-                    </div>
-                    <div class="char-skill">
-                        <h4>TẤN CÔNG</h4>
-                        <p>Không có kỹ năng. Điểm to nhất để càn quét (Nhưng rất sợ Đào Thương).</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="char-row">
-                <div class="char-rank">ƯU TIÊN 6</div>
-                <img src="masks/Screenshot 2026-05-31 223632.png" class="mask-img">
-                <div class="char-details">
-                    <div class="char-name-box">
-                        <span class="dot brown"></span>
-                        <h3 class="c-name">ĐÀO BI</h3>
-                        <span class="c-points">+2Đ</span>
-                    </div>
-                    <div class="char-skill">
-                        <h4>LẬT KÈO</h4>
-                        <p>(Kỹ năng bị động) Nếu người tung lá này đang có ít Token Ân sủng nhất bàn, lá bài đột biến thành +10đ.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Colorful Calendar Grid Decoration -->
-        <div class="calendar-deco">
-            <div class="c-box bg-red"></div><div class="c-box bg-gold"></div><div class="c-box bg-cream-dark"></div><div class="c-box bg-green"></div><div class="c-box bg-cream-dark"></div>
-            <div class="c-box bg-teal"></div><div class="c-box bg-purple"></div><div class="c-box bg-cream-dark"></div><div class="c-box bg-red"></div><div class="c-box bg-gold"></div>
-            <div class="c-box bg-cream-dark"></div><div class="c-box bg-green"></div><div class="c-box bg-teal"></div><div class="c-box bg-cream-dark"></div><div class="c-box bg-purple"></div>
-        </div>
-    </section>
-
-    <div class="divider container"><hr></div>
-
-    <!-- Luồng Chơi -->
-    <section class="section container" id="luat-choi">
-        <div class="section-header">
-            <div class="section-number c-teal border-teal">03</div>
-            <h2 class="section-title"><span class="c-teal">LUỒNG CHƠI</span> <span class="c-red">CHUẨN</span></h2>
-        </div>
-        <p class="section-subtitle">Mục tiêu tối thượng: Ai gom đủ 4 Token Ân Sủng đầu tiên là người Vô địch.</p>
-        
-        <div class="flow-grid">
-            <div class="flow-box">
-                <div class="f-num">1</div>
-                <div class="f-content">
-                    <h3>KHỞI ĐỘNG (SETUP)</h3>
-                    <p>Mỗi người rút 5 lá bài cầm tay. Trọng tài lật 1 Thẻ Vở Diễn chung (Đổi luật tạm thời).</p>
-                </div>
-            </div>
-            <div class="flow-box">
-                <div class="f-num">2</div>
-                <div class="f-content">
-                    <h3>DÀN TRẬN (DEPLOYMENT)</h3>
-                    <p>Rút 2 lá bài từ trên tay úp xuống mặt bàn. Đã rời tay khỏi bài là không được đổi lại.</p>
-                </div>
-            </div>
-            <div class="flow-box">
-                <div class="f-num">3</div>
-                <div class="f-content">
-                    <h3>CÔNG DIỄN (RESOLUTION)</h3>
-                    <p>Đồng loạt ngửa bài. Giải quyết kỹ năng theo Thứ tự Ưu tiên (1-6). Cộng tổng điểm thực tế.</p>
-                </div>
-            </div>
-            <div class="flow-box">
-                <div class="f-num">4</div>
-                <div class="f-content">
-                    <h3>KẾT TOÁN (PAYOUT)</h3>
-                    <p>Lật Thẻ Biến Cố. Người cao điểm nhất nhận 1 Token Ân Sủng. Rút đủ 5 lá để qua vòng.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script src="script.js"></script>
 </body>
 </html>
