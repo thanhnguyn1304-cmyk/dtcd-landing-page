@@ -2,24 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- GSAP TIMELINE CHO WELCOME INTRO ---
     // Khởi tạo timeline của GSAP
-    const tl = gsap.timeline({
+    const introTl = gsap.timeline({
         onComplete: () => {
             // Khi toàn bộ hiệu ứng intro kết thúc
             document.body.classList.add('intro-done');
         }
     });
 
-    // B1: Coin 1 hiện lên từ từ
-    tl.to("#coin1", { opacity: 1, duration: 1.5, ease: "power2.out" })
-      
-      // B2: Coin 2 hiện lên chồng khít (vẽ thêm nét đen), delay 0.5s so với lúc coin 1 đang hiện
-      .to("#coin2", { opacity: 1, duration: 1.5, ease: "power2.out" }, "-=0.5")
-      
-      // NGHỈ 1 CHÚT (Để người dùng nhìn rõ đồng xu hoàn chỉnh)
-      .to({}, {duration: 0.5})
-
-      // B4: Mờ dần đồng xu để nhường chỗ cho logo
-      .to(".coin-container", { opacity: 0, duration: 1, ease: "power2.inOut" })
+    // Hiện Coin 1 (Tung lên)
+    introTl.to("#coin1", { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.5)" })
+           .to("#coin1", { opacity: 0, y: -30, scale: 1.2, duration: 0.3 }, "+=0.2")
+    // Hiện Coin 2 (Lật mặt nhanh)
+           .to("#coin2", { opacity: 1, y: 0, rotationY: 360, duration: 0.4, ease: "power2.out" }, "-=0.2")
+           .to("#coin2", { opacity: 0, y: -30, scale: 1.2, duration: 0.3 }, "+=0.2")
+    // Hiện Coin 3 (Phóng to ra)
+           .to("#coin3", { opacity: 1, y: 0, scale: 1.1, duration: 0.4, ease: "back.out(1.5)" }, "-=0.2")
+           .to("#coin3", { opacity: 0, scale: 2, duration: 0.4 }, "+=0.3") // Phóng to và mờ đi tạo cảm giác lao tới
+           
+      // Mờ dần đồng xu thật nhanh để nhường chỗ cho logo
+      .to(".coin-container", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, "-=0.2")
       
       // B5: Hiện Logo hoành tráng
       .add(() => {
@@ -41,16 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- CUSTOM FAN CAROUSEL (Toán học xòe quạt độc quyền) ---
-    function initCardFan() {
-        const container = document.getElementById('card-fan');
+    // --- CUSTOM FAN CAROUSEL (Hỗ trợ chạy song song 3 vòng xoay độc lập) ---
+    function initCarousel(container) {
         if (!container) return;
         
         const cards = Array.from(container.querySelectorAll('.custom-card'));
         const N = cards.length;
+        if (N === 0) return;
         
-        let progress = 0; // Vị trí cuộn hiện tại
-        let targetProgress = 0; // Vị trí cuộn mục tiêu (để làm mượt)
+        let progress = 0; 
+        let targetProgress = 0; 
         
         let isDragging = false;
         let startX = 0;
@@ -58,30 +59,25 @@ document.addEventListener('DOMContentLoaded', () => {
         let velocity = 0;
         
         // Thông số cấu hình quạt bài
-        const SPACING = 120; // Khoảng cách giãn ra hai bên (px)
-        const DROP_Y = 25; // Độ rớt xuống của lá bài (px)
-        const ROTATION = 12; // Góc nghiêng của lá bài (độ)
+        const SPACING = 120; 
+        const DROP_Y = 25; 
+        const ROTATION = 12; 
         
         function updateCards() {
-            // Nội suy (Ease) để chuyển động mượt mà như bôi mỡ
             progress += (targetProgress - progress) * 0.1;
             
             cards.forEach((card, i) => {
-                // Phép Toán Vòng Lặp Vô Tận (Modulo 2 chiều)
                 let offset = ((i - progress) % N + N) % N;
-                // Nếu khoảng cách lớn hơn nửa vòng, cho nó bọc qua đầu kia
                 if (offset > N/2) offset -= N;
                 
                 let absOffset = Math.abs(offset);
                 
-                // Áp dụng khoảng cách, độ nghiêng và rớt
                 let tx = offset * SPACING;
                 let ty = absOffset * DROP_Y;
                 let rot = offset * ROTATION;
-                let z = 100 - Math.round(absOffset * 10); // Bài xa tâm sẽ chìm xuống dưới
+                let z = 100 - Math.round(absOffset * 10); 
                 
-                // Lá bài càng xa thì càng mờ dần và biến mất
-                let opacity = 1 - Math.max(0, absOffset - 2.5);
+                let opacity = 1 - Math.max(0, absOffset - 4.0);
                 if (opacity < 0) opacity = 0;
                 
                 card.style.transform = `translate(-50%, -50%) translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
@@ -92,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(updateCards);
         }
         
-        // --- XỬ LÝ SỰ KIỆN KÉO VUỐT ---
         function dragStart(e) {
             if (e.type === 'touchstart') {
                 startX = e.touches[0].clientX;
@@ -110,8 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let deltaX = currentX - lastX;
             lastX = currentX;
             
-            velocity = deltaX; // Ghi nhận vận tốc
-            // Quy đổi pixel sang tiến trình (1 khoảng cách = 1 lá bài)
+            velocity = deltaX; 
             targetProgress -= deltaX / SPACING; 
         }
         
@@ -119,28 +113,81 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isDragging) return;
             isDragging = false;
             
-            // Trượt theo quán tính khi buông tay
             targetProgress -= velocity * 0.8 / SPACING; 
-            // Bắt dính (Snap) vào lá bài gần nhất
             targetProgress = Math.round(targetProgress);
         }
         
-        // Gắn sự kiện Chuột
         container.addEventListener('mousedown', dragStart);
         window.addEventListener('mousemove', dragMove);
         window.addEventListener('mouseup', dragEnd);
         window.addEventListener('mouseleave', dragEnd);
         
-        // Gắn sự kiện Cảm ứng (Điện thoại)
         container.addEventListener('touchstart', dragStart, {passive: true});
         container.addEventListener('touchmove', dragMove, {passive: false});
         container.addEventListener('touchend', dragEnd);
         
-        // Bắt đầu vòng lặp Render
         updateCards();
     }
     
-    // Kích hoạt thuật toán
-    initCardFan();
+    // --- HIỆU ỨNG GSAP ĐẬP HỘP ---
+    function initBoxAnimation() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            console.warn("GSAP hoặc ScrollTrigger chưa được tải.");
+            return;
+        }
+        
+        gsap.registerPlugin(ScrollTrigger);
+        
+        let boxTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#box-presentation-area",
+                start: "top 60%", // Kích hoạt khi cuộn đến 60% màn hình
+                once: true // Chỉ hiệu ứng 1 lần
+            }
+        });
+
+        boxTl.to("#the-game-box", {
+            y: -20,
+            rotation: 2,
+            yoyo: true,
+            repeat: 3,
+            duration: 0.15,
+            ease: "power1.inOut"
+        })
+        .to("#the-game-box", {
+            scale: 0.8,
+            opacity: 0.1,
+            y: 80,
+            duration: 0.6,
+            ease: "power2.in"
+        })
+        .to(".carousels-wrapper", {
+            opacity: 1,
+            pointerEvents: "auto",
+            duration: 0.1
+        }, "-=0.2")
+        .to(".carousel-column", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15, // Nổ ra từng vòng xoay
+            ease: "back.out(1.2)"
+        }, "-=0.2")
+        .fromTo(".carousel-title", {
+            opacity: 0,
+            y: 20
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.1
+        }, "-=0.4");
+    }
+
+    // Tìm và gắn thuật toán cho tất cả các vòng xoay trên trang
+    document.querySelectorAll('.custom-carousel-container').forEach(initCarousel);
+    
+    // Bắt đầu hiệu ứng hộp
+    initBoxAnimation();
 
 });
