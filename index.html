@@ -11,22 +11,23 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Thư viện GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
     <!-- Lớp màn hình chờ (Intro) -->
     <div id="welcome-intro">
         <div class="coin-container">
-            <img src="assets/coin1.png" class="coin" id="coin1" alt="Coin 1">
-            <img src="assets/coin2.png" class="coin" id="coin2" alt="Coin 2">
-            <!-- Đã bỏ coin 3 theo yêu cầu -->
+            <img src="landing-assets/coin 1.png" class="coin" id="coin1" alt="Coin 1">
+            <img src="landing-assets/coin 2.png" class="coin" id="coin2" alt="Coin 2">
+            <img src="landing-assets/coin.png" class="coin" id="coin3" alt="Coin 3">
         </div>
     </div>
 
     <!-- Thanh Điều Hướng (Navbar) -->
     <nav id="sticky-nav">
         <!-- Logo di chuyển -->
-        <img src="assets/logouse.png" id="main-logo" alt="Logo Tuồng">
+        <img src="landing-assets/logo.png" id="main-logo" alt="Logo Tuồng">
         
         <ul class="nav-links">
             <li><a href="#about">Trải Nghiệm</a></li>
@@ -36,30 +37,47 @@
 
     <!-- Sân khấu mở màn (Hero Background) -->
     <div id="hero-background">
-        <img src="assets/hero_bg.png" alt="Sân khấu Tuồng">
+        <img src="landing-assets/landing.png" alt="Sân khấu Tuồng">
         <div class="hero-overlay"></div>
     </div>
 
     <!-- Nội dung chính của trang -->
     <main id="main-content">
         <!-- Họa tiết trang trí lơ lửng (Particles) -->
-        <div class="decor particle-1"><img src="decorative elements/Illustration7 (9).png" alt=""></div>
-        <div class="decor particle-2"><img src="decorative elements/Illustration7 (10).png" alt=""></div>
-        <div class="decor particle-3"><img src="decorative elements/Illustration7 (11).png" alt=""></div>
-        <div class="decor particle-4"><img src="decorative elements/Illustration7 (12).png" alt=""></div>
-        <div class="decor particle-5"><img src="decorative elements/Illustration7 (15).png" alt=""></div>
-        <div class="decor particle-6"><img src="decorative elements/Illustration7 (17).png" alt=""></div>
-        <div class="decor particle-7"><img src="decorative elements/Illustration7 (19).png" alt=""></div>
-        <div class="decor particle-8"><img src="decorative elements/Illustration7 (20).png" alt=""></div>
+        <div class="decor particle-1"><img src="landing-assets/1.png" alt=""></div>
+        <div class="decor particle-2"><img src="landing-assets/2.png" alt=""></div>
+        <div class="decor particle-3"><img src="landing-assets/3.png" alt=""></div>
+        <div class="decor particle-4"><img src="landing-assets/4.png" alt=""></div>
+        <div class="decor particle-5"><img src="landing-assets/5.png" alt=""></div>
+        <div class="decor particle-6"><img src="landing-assets/6.png" alt=""></div>
+        <div class="decor particle-7"><img src="landing-assets/1.png" alt=""></div>
+        <div class="decor particle-8"><img src="landing-assets/2.png" alt=""></div>
         <!-- Thêm họa tiết lấp đầy phần dưới -->
-        <div class="decor particle-9"><img src="decorative elements/Illustration7 (9).png" alt=""></div>
-        <div class="decor particle-10"><img src="decorative elements/Illustration7 (10).png" alt=""></div>
-        <div class="decor particle-11"><img src="decorative elements/Illustration7 (11).png" alt=""></div>
-        <div class="decor particle-12"><img src="decorative elements/Illustration7 (12).png" alt=""></div>
-        <div class="decor particle-13"><img src="decorative elements/Illustration7 (15).png" alt=""></div>
-        <div class="decor particle-14"><img src="decorative elements/Illustration7 (17).png" alt=""></div>
-        <div class="decor particle-15"><img src="decorative elements/Illustration7 (19).png" alt=""></div>
-        <div class="decor particle-16"><img src="decorative elements/Illustration7 (20).png" alt=""></div>
+        <div class="decor particle-9"><img src="landing-assets/3.png" alt=""></div>
+        <div class="decor particle-10"><img src="landing-assets/4.png" alt=""></div>
+        <div class="decor particle-11"><img src="landing-assets/5.png" alt=""></div>
+        <div class="decor particle-12"><img src="landing-assets/6.png" alt=""></div>
+        <div class="decor particle-13"><img src="landing-assets/1.png" alt=""></div>
+        <div class="decor particle-14"><img src="landing-assets/2.png" alt=""></div>
+        <div class="decor particle-15"><img src="landing-assets/3.png" alt=""></div>
+        <div class="decor particle-16"><img src="landing-assets/4.png" alt=""></div>
+        <!-- Thêm họa tiết để tăng độ dày theo yêu cầu -->
+        <div class="decor particle-17"><img src="landing-assets/5.png" alt=""></div>
+        <div class="decor particle-18"><img src="landing-assets/6.png" alt=""></div>
+        <div class="decor particle-19"><img src="landing-assets/1.png" alt=""></div>
+        <div class="decor particle-20"><img src="landing-assets/2.png" alt=""></div>
+        <div class="decor particle-21"><img src="landing-assets/3.png" alt=""></div>
+        <div class="decor particle-22"><img src="landing-assets/4.png" alt=""></div>
+        <div class="decor particle-23"><img src="landing-assets/5.png" alt=""></div>
+        <div class="decor particle-24"><img src="landing-assets/6.png" alt=""></div>
+        
+        <!-- Bổ sung thêm họa tiết lấp kín không gian bên trái -->
+        <div class="decor particle-25"><img src="landing-assets/1.png" alt=""></div>
+        <div class="decor particle-26"><img src="landing-assets/2.png" alt=""></div>
+        <div class="decor particle-27"><img src="landing-assets/3.png" alt=""></div>
+        <div class="decor particle-28"><img src="landing-assets/4.png" alt=""></div>
+        <div class="decor particle-29"><img src="landing-assets/5.png" alt=""></div>
+        <div class="decor particle-30"><img src="landing-assets/6.png" alt=""></div>
 
         <section class="game-info-section">
             <h1 class="section-title">Hát Bội: Nghệ Thuật Kể Chuyện</h1>
@@ -67,18 +85,77 @@
                 Tuồng - Đấu Trí Cung Đình là boardgame đấu trí lấy cảm hứng từ nghệ thuật Hát Bội Việt Nam. Người chơi hóa thân thành các tuyến nhân vật kinh điển, sử dụng chiến thuật, phán đoán và những màn lật kèo bất ngờ để giành lấy Ân Sủng trên sân khấu cung đình.
             </p>
             
-            <!-- Custom Fan Carousel (Logic xoay tròn độc quyền vô tận) -->
-            <div class="custom-carousel-container" id="card-fan">
-                <!-- Nạp 8 lá bài để vòng tròn luôn đầy đặn -->
-                <div class="custom-card"><img src="assets/kep-van.png" alt="Kép Văn"></div>
-                <div class="custom-card"><img src="assets/kep-ninh.png" alt="Kép Nịnh"></div>
-                <div class="custom-card"><img src="assets/kep-vo.png" alt="Kép Võ"></div>
-                <div class="custom-card"><img src="assets/dao-lang.png" alt="Đào Lẳng"></div>
+            <!-- Box Animation Section -->
+            <div id="box-presentation-area">
+                <div class="box-container" id="the-game-box">
+                    <img src="landing-assets/hộp.png" alt="Hộp Game Tuồng">
+                </div>
                 
-                <div class="custom-card"><img src="assets/kep-van.png" alt="Kép Văn"></div>
-                <div class="custom-card"><img src="assets/kep-vo.png" alt="Kép Võ"></div>
-                <div class="custom-card"><img src="assets/kep-ninh.png" alt="Kép Nịnh"></div>
-                <div class="custom-card"><img src="assets/dao-lang.png" alt="Đào Lẳng"></div>
+                <div class="carousels-wrapper">
+                    <!-- Vòng Xoay 1: Nhân Vật -->
+                    <div class="carousel-column" id="col-nhanvat">
+                        <h3 class="carousel-title">Nhân Vật</h3>
+                        <div class="custom-carousel-container" id="carousel-nhanvat">
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - kép văn.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Đào Thương.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Đào Lẳng.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Kép Nịnh.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Kép Võ.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Đào Pha.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - kép văn.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Đào Thương.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Đào Lẳng.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Kép Nịnh.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Kép Võ.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Thẻ Nhân Vật - Đào Pha.png" alt=""></div>
+                        </div>
+                    </div>
+
+                    <!-- Vòng Xoay 2: Biến Cố -->
+                    <div class="carousel-column" id="col-bienco">
+                        <h3 class="carousel-title">Biến Cố</h3>
+                        <div class="custom-carousel-container" id="carousel-bienco">
+                            <!-- 12 thẻ (4x3) để vòng xoay đạt độ đối xứng tuyệt đối (Left -4 -> Right +4) -->
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - CẢI TRANG MAO HIỂM.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - CẢI TÀ QUY CHÍNH.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - KÉO QUÂN XUẤT CHINH.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - TRUY PHONG SÁT LỆNH.png" alt=""></div>
+                            
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - CẢI TRANG MAO HIỂM.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - CẢI TÀ QUY CHÍNH.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - KÉO QUÂN XUẤT CHINH.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - TRUY PHONG SÁT LỆNH.png" alt=""></div>
+
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - CẢI TRANG MAO HIỂM.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - CẢI TÀ QUY CHÍNH.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - KÉO QUÂN XUẤT CHINH.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Biến Cố - TRUY PHONG SÁT LỆNH.png" alt=""></div>
+                        </div>
+                    </div>
+
+                    <!-- Vòng Xoay 3: Vở Diễn -->
+                    <div class="carousel-column" id="col-vodien">
+                        <h3 class="carousel-title">Vở Diễn</h3>
+                        <div class="custom-carousel-container" id="carousel-vodien">
+                            <!-- 12 thẻ (3x4) -->
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG THẦY.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG TÂN THỜI.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG ĐỒ.png" alt=""></div>
+                            
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG THẦY.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG TÂN THỜI.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG ĐỒ.png" alt=""></div>
+                            
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG THẦY.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG TÂN THỜI.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG ĐỒ.png" alt=""></div>
+
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG THẦY.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG TÂN THỜI.png" alt=""></div>
+                            <div class="custom-card" style="background: #f7f0e2; border-radius: 8px; overflow: hidden;"><img src="landing-assets/Lá Vở Diễn - TUỒNG ĐỒ.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -87,63 +164,87 @@
             <h2 class="section-title">Ma Trận Nhân Vật</h2>
             <div class="matrix-grid">
                 <div class="matrix-item">
-                    <img src="assets/demo.png" alt="Kép Văn">
+                    <img src="landing-assets/kép văn.png" alt="Kép Văn">
                     <div class="matrix-info">
-                        <h3>1. Kép Văn</h3>
+                        <img src="landing-assets/1.png" class="matrix-icon" alt="">
+                        <h3>1. KÉP VĂN</h3>
                         <p class="subtitle">Bậc quân sư điềm tĩnh</p>
-                        <p class="meta">Ưu tiên: 1 • Vai trò: Phòng thủ / ổn định thế trận</p>
+                        <div class="meta-tags">
+                            <span class="meta-pill">Ưu tiên: 1</span>
+                            <span class="meta-pill">Phòng thủ / Ổn định</span>
+                        </div>
                         <p class="desc">Kích hoạt sớm nhất để bảo vệ bản thân khỏi sát thương và hiệu ứng bất lợi.</p>
-                        <p class="playstyle"><strong>Lối chơi:</strong> Giữ nhịp trận đấu, bảo toàn điểm số và chờ thời cơ phản công.</p>
+                        <p class="playstyle" style="--char-color: #1a5252;"><strong>Lối chơi:</strong> Giữ nhịp trận đấu, bảo toàn điểm số và chờ thời cơ phản công.</p>
                     </div>
                 </div>
                 <div class="matrix-item">
-                    <img src="assets/demo.png" alt="Đào Thương">
+                    <img src="landing-assets/đào thương.png" alt="Đào Thương">
                     <div class="matrix-info">
-                        <h3>2. Đào Thương</h3>
+                        <img src="landing-assets/2.png" class="matrix-icon" alt="">
+                        <h3>2. ĐÀO THƯƠNG</h3>
                         <p class="subtitle">Người làm mềm đòn tấn công</p>
-                        <p class="meta">Ưu tiên: 2 • Vai trò: Khắc chế chiến binh</p>
+                        <div class="meta-tags">
+                            <span class="meta-pill">Ưu tiên: 2</span>
+                            <span class="meta-pill">Khắc chế chiến binh</span>
+                        </div>
                         <p class="desc">Có thể vô hiệu hóa sức mạnh của Kép Võ, biến cú đánh lớn thành con số 0.</p>
-                        <p class="playstyle"><strong>Lối chơi:</strong> Đọc bài đối thủ và chặn đúng thời điểm để xoay chuyển cục diện.</p>
+                        <p class="playstyle" style="--char-color: #5b3256;"><strong>Lối chơi:</strong> Đọc bài đối thủ và chặn đúng thời điểm để xoay chuyển cục diện.</p>
                     </div>
                 </div>
                 <div class="matrix-item">
-                    <img src="assets/demo.png" alt="Đào Lẳng">
+                    <img src="landing-assets/đào lẳng.png" alt="Đào Lẳng">
                     <div class="matrix-info">
-                        <h3>3. Đào Lẳng</h3>
-                        <p class="subtitle">Bậc thao túng sân khấu</p>
-                        <p class="meta">Ưu tiên: 3 • Vai trò: Cướp tài nguyên</p>
+                        <img src="landing-assets/3.png" class="matrix-icon" alt="">
+                        <h3>3. ĐÀO LẲNG</h3>
+                        <p class="subtitle">Bậc THẦY thao túng sân khấu</p>
+                        <div class="meta-tags">
+                            <span class="meta-pill">Ưu tiên: 3</span>
+                            <span class="meta-pill">Cướp tài nguyên</span>
+                        </div>
                         <p class="desc">Tước đoạt 3 Token Ân Sủng từ một người chơi bất kỳ.</p>
-                        <p class="playstyle"><strong>Lối chơi:</strong> Phá nhịp đối thủ, tạo khoảng cách tài nguyên và ép bàn chơi hỗn loạn.</p>
+                        <p class="playstyle" style="--char-color: #b23a3a;"><strong>Lối chơi:</strong> Phá nhịp đối thủ, tạo khoảng cách tài nguyên và ép bàn chơi hỗn loạn.</p>
                     </div>
                 </div>
                 <div class="matrix-item">
-                    <img src="assets/demo.png" alt="Kép Nịnh">
+                    <img src="landing-assets/kép nịnh.png" alt="Kép Nịnh">
                     <div class="matrix-info">
-                        <h3>4. Kép Nịnh</h3>
+                        <img src="landing-assets/4.png" class="matrix-icon" alt="">
+                        <h3>4. KÉP NỊNH</h3>
                         <p class="subtitle">Kẻ giăng bẫy quyền lực</p>
-                        <p class="meta">Ưu tiên: 4 • Vai trò: Trừng phạt người dẫn đầu</p>
+                        <div class="meta-tags">
+                            <span class="meta-pill">Ưu tiên: 4</span>
+                            <span class="meta-pill">Trừng phạt người dẫn đầu</span>
+                        </div>
                         <p class="desc">Gây trừ 5 điểm cho người đang đứng đầu bàn chơi.</p>
-                        <p class="playstyle"><strong>Lối chơi:</strong> Chuyên phá thế snowball, khiến người dẫn đầu không thể yên tâm giữ lợi thế.</p>
+                        <p class="playstyle" style="--char-color: #6a6c42;"><strong>Lối chơi:</strong> Chuyên phá thế snowball, khiến người dẫn đầu không thể yên tâm giữ lợi thế.</p>
                     </div>
                 </div>
                 <div class="matrix-item">
-                    <img src="assets/demo.png" alt="Kép Võ">
+                    <img src="landing-assets/kép võ.png" alt="Kép Võ">
                     <div class="matrix-info">
-                        <h3>5. Kép Võ</h3>
+                        <img src="landing-assets/5.png" class="matrix-icon" alt="">
+                        <h3>5. KÉP VÕ</h3>
                         <p class="subtitle">Chiến binh áp đảo chiến trường</p>
-                        <p class="meta">Ưu tiên: 5 • Vai trò: Tấn công trực diện</p>
+                        <div class="meta-tags">
+                            <span class="meta-pill">Ưu tiên: 5</span>
+                            <span class="meta-pill">Tấn công trực diện</span>
+                        </div>
                         <p class="desc">Tạo lượng điểm lớn nhất trên bàn đấu với +8 điểm.</p>
-                        <p class="playstyle"><strong>Lối chơi:</strong> Tăng tốc mạnh, đe dọa kết thúc ván nhanh nếu không bị khắc chế.</p>
+                        <p class="playstyle" style="--char-color: #cc2929;"><strong>Lối chơi:</strong> Tăng tốc mạnh, đe dọa kết thúc ván nhanh nếu không bị khắc chế.</p>
                     </div>
                 </div>
                 <div class="matrix-item">
-                    <img src="assets/demo.png" alt="Đào Bi">
+                    <img src="landing-assets/đào pha.png" alt="Đào Pha">
                     <div class="matrix-info">
-                        <h3>6. Đào Bi</h3>
+                        <img src="landing-assets/6.png" class="matrix-icon" alt="">
+                        <h3>6. ĐÀO PHA</h3>
                         <p class="subtitle">Người lật ngược số phận</p>
-                        <p class="meta">Ưu tiên: 6 • Vai trò: Comeback / đảo chiều</p>
+                        <div class="meta-tags">
+                            <span class="meta-pill">Ưu tiên: 6</span>
+                            <span class="meta-pill">Comeback / Đảo chiều</span>
+                        </div>
                         <p class="desc">Nếu đang đứng cuối bảng, nhân vật này bùng nổ với hệ số Đột Biến, nhận +10 điểm.</p>
-                        <p class="playstyle"><strong>Lối chơi:</strong> Dành cho những cú lật kèo ngoạn mục ở giai đoạn cuối trận.</p>
+                        <p class="playstyle" style="--char-color: #b87333;"><strong>Lối chơi:</strong> Dành cho những cú lật kèo ngoạn mục ở giai đoạn cuối trận.</p>
                     </div>
                 </div>
             </div>
@@ -156,18 +257,18 @@
             <p class="content-text">Mỗi người chơi sẽ điều khiển các nhân vật Hát Bội với những khả năng riêng biệt. Mục tiêu là sử dụng đúng nhân vật vào đúng thời điểm để giành được nhiều Ân Sủng nhất trước khi vở diễn kết thúc.</p>
             
             <div class="steps-container">
-                <div class="step-card">
-                    <h3>Bước 1 — Chọn nhân vật</h3>
+                <div class="step-card" data-step="1">
+                    <h3><img src="landing-assets/1.png" class="step-icon" alt=""> Bước 1 — Chọn nhân vật</h3>
                     <p>Từ 5 lá bài trên tay, mỗi người bí mật chọn 2 lá và đặt úp xuống bàn.</p>
                     <p class="step-note">Đây là lúc bạn phải đoán đối thủ đang chuẩn bị làm gì.</p>
                 </div>
-                <div class="step-card">
-                    <h3>Bước 2 — Đồng loạt lật bài</h3>
+                <div class="step-card" data-step="2">
+                    <h3><img src="landing-assets/2.png" class="step-icon" alt=""> Bước 2 — Đồng loạt lật bài</h3>
                     <p>Khi tất cả đã sẵn sàng, mọi người cùng lật bài.</p>
                     <p class="step-note">Sân khấu được hé lộ và những màn đấu trí bắt đầu.</p>
                 </div>
-                <div class="step-card">
-                    <h3>Bước 3 — Kích hoạt kỹ năng</h3>
+                <div class="step-card" data-step="3">
+                    <h3><img src="landing-assets/3.png" class="step-icon" alt=""> Bước 3 — Kích hoạt kỹ năng</h3>
                     <p>Mỗi nhân vật sẽ thực hiện kỹ năng của mình theo thứ tự.</p>
                     <ul class="skill-list">
                         <li><strong>Kép Văn</strong> bảo vệ bản thân</li>
@@ -175,17 +276,22 @@
                         <li><strong>Đào Lẳng</strong> cướp Ân Sủng</li>
                         <li><strong>Kép Nịnh</strong> trừng phạt người dẫn đầu</li>
                         <li><strong>Kép Võ</strong> tung đòn mạnh mẽ</li>
-                        <li><strong>Đào Bi</strong> tạo nên những màn lật kèo bất ngờ</li>
+                        <li><strong>Đào Pha</strong> tạo nên những màn lật kèo bất ngờ</li>
                     </ul>
                     <p class="step-note">Chỉ trong một lượt, cục diện có thể thay đổi hoàn toàn.</p>
                 </div>
-                <div class="step-card">
-                    <h3>Bước 4 — Chuẩn bị cho lượt tiếp theo</h3>
+                <div class="step-card" data-step="4">
+                    <h3><img src="landing-assets/4.png" class="step-icon" alt=""> Bước 4 — Chuẩn bị cho lượt sau</h3>
                     <p>Thu bài đã dùng, rút thêm bài mới và tiếp tục vòng đấu.</p>
                     <p class="step-note">Cuộc chiến tiếp diễn cho đến khi vở diễn hạ màn.</p>
                 </div>
             </div>
         </section>
+        <!-- 4. Nút Call to Action (Mua hàng) -->
+        <section class="cta-section">
+            <a href="#" class="cta-button">SỞ HỮU TUỒNG NGAY</a>
+        </section>
+
     </main>
 
     <script src="script.js"></script>
